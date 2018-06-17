@@ -38,10 +38,10 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             next = request.args.get('next')
-            if next is None or not next.startswitch('/'):
+            if next is None or not next.startswith('/'):
                 next = url_for('main.index')
             return redirect(next)
-        flash("用户名或密码无效")
+        flash('无效的用户名或密码')
     return render_template('auth/login.html', form=form)
 
 
