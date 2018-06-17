@@ -13,6 +13,6 @@ app = create_app(os.getenv('FLASK_Config') or 'default')
 app.app_context()
 app.app_context().push()
 # with app.app_context():
-    # db.create_all()
+#     db.create_all()
 
 app.run(debug=False)

@@ -13,9 +13,10 @@ bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
 
+from .models import *
+
 def create_app(config_name):
     app = Flask(__name__)
-    from models import *
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     bootstrap.init_app(app)
