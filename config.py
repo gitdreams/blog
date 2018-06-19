@@ -11,11 +11,23 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
-    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flask]'
-    FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
-    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
+    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.qq.com')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT', '456'))
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', '120735429@qq.com')
+    MAIL_PASSWORD = os.environ.get('MAIN_PASSWORD', 'L5845201314')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', "aktqlmrgdaojcagj")
+    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
+    FLASKY_MAIL_SENDER = '120735429@qq.com'
+    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN', '120735429@qq.com')
+    SSL_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_RECORD_QUERIES = True
+    FLASKY_POSTS_PER_PAGE = 20
+    FLASKY_FOLLOWERS_PER_PAGE = 50
+    FLASKY_COMMENTS_PER_PAGE = 30
+    FLASKY_SLOW_DB_QUERY_TIME = 0.5
+
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \
                               'postgresql://postgres:111111@localhost/maildb'
 

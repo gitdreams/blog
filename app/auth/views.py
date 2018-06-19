@@ -169,7 +169,7 @@ def change_email_request():
 
 @auth.route('/change_email/<token>')
 @login_required
-def change_email(token)
+def change_email(token):
     if current_user.change_email(token):
         db.session.commit()
         flash('你的电子邮件已经更新')

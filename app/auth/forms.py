@@ -19,7 +19,7 @@ class LoginForm(FlaskForm):
 
 # 注册表单
 class RegistrationForm(FlaskForm):
-    email = StringField('邮箱', validators=[DataRequired[], Length(1, 64),
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])
     username = StringField('用户名', validators=[
         DataRequired(),
@@ -36,9 +36,11 @@ class RegistrationForm(FlaskForm):
     ])
     submit = SubmitField('注册')
 
+
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('邮箱已经被注册')
+
 
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
