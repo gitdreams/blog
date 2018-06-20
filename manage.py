@@ -4,6 +4,9 @@
 # @File :manage.py
 # @software: PyCharm
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 from twisted.web import server
 from twisted.web.wsgi import WSGIResource

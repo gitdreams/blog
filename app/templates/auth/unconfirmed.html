@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}认证你的账户{% endblock %}
+
+{% block page_content%}
+    <div class="page-header">
+        <h1>
+            你好， {{ current_user.username }}!
+        </h1>
+        <h3>你还没有确认你的账户</h3>
+        <p>
+            在你访问本网站之前，您应该首先确认您的账户，在您的邮箱应该有一封确认邮件，
+        </p>
+        <p>
+            重新发送确认邮件
+            <a href="{{ url_for('auth.resend_confirmation') }}">重新获取</a>
+        </p>
+    </div>
+{% endblock %}
