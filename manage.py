@@ -23,6 +23,9 @@ app.app_context().push()
 # with app.app_context():
 #     db.create_all()
 
+from app.models import Role
+# Role.insert_roles()
+
 app.run()
 # manager.run()
 

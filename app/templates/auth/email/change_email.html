@@ -1,0 +1,14 @@
+<p>亲爱的 {{ user.username }}，</p>
+<p>
+    请确认你的新邮件地址
+    <a href="{{ url_for('auth.change_email', token=token, _external=True) }}">确认</a>。
+</p>
+<p>
+    或者你可以将以下链接粘贴到浏览器中
+</p>
+<p>
+    {{ url_for('auth.change_email', token=token, _external=True) }}
+</p>
+<p>诚挚</p>
+<p>李志恒</p>
+<p><small>Note:不回复</small></p>

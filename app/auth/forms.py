@@ -24,8 +24,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('用户名', validators=[
         DataRequired(),
         Length(1, 64),
-        Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0),
-        '用户名只能由字母，数字，点，下划线组成'
+        Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0, '用户名只能由字母，数字，点，下划线组成' )
     ])
     password = PasswordField('密码', validators=[
         DataRequired(),

@@ -34,6 +34,12 @@ class Role(db.Model):
     name = db.Column(db.String(64), unique=True)
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
+    """
+    lazy的取值（dynamic, joined, select）， 他决定了什么时候从该数据库中加载数据
+    select : 访问该属性的时候，就会全部加载该属性的信息
+    joined : 是对关联的两个表进行join操作，从而获取所有相关对象
+    dynamic : 在访问属性的时候，并没有在内存中加载数据，而是返回一个query对象，需要执行相应的方法才能获取对象    
+    """
     users = db.relationship('User', backref='role', lazy='dynamic')
 
     def __init__(self, **kwargs):
@@ -77,7 +83,7 @@ class Role(db.Model):
 
     def add_permission(self, perm):
         if not self.has_permission(perm):
-            self.permission += perm
+            self.permissions += perm
 
     def has_permission(self, perm):
         return self.permissions & perm == perm
@@ -134,13 +140,13 @@ class User(UserMixin, db.Model):
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
         if self.role is None:
-            if self.email == current_app.config['FLASK_ADMIN']:
+            if self.email == current_app.config['FLASKY_ADMIN']:
                 self.role = Role.query.filter_by(name='Administrator').first()
             if self.role is None:
                 self.role = Role.query.filter_by(default=True).first()
         if self.email is not None and self.avatar_hash is None:
             self.avatar_hash = self.gravatar_hash()
-        self.follow(self)
+        # self.follow(self)
 
     @property
     def password(self):
@@ -223,7 +229,7 @@ class User(UserMixin, db.Model):
         self.last_seen = datetime.utcnow()
         db.session.add(self)
 
-    def gravatat_hash(self):
+    def gravatar_hash(self):
         return hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
 
     def gravatar(self, size=100, default='identicon', ration='g'):
@@ -234,6 +240,7 @@ class User(UserMixin, db.Model):
         )
 
     def follow(self, user):
+        print self.is_following(user)
         if not self.is_following(user):
             f = Follow(follower=self, followed=user)
             db.session.add(f)
@@ -248,7 +255,7 @@ class User(UserMixin, db.Model):
             return False
         return self.followed.filter_by(
             followed_id=user.id
-        ).first is not None
+        ).first() is not None
 
     def is_followed_by(self, user):
         if user.id is None:

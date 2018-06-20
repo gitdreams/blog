@@ -1,0 +1,9 @@
+亲爱的 {{ user.username }}，
+
+    你可以将以下链接粘贴到浏览器中
+
+    {{ url_for('auth.change_email', token=token, _external=True) }}
+
+诚挚
+李志恒
+Note:不回复
