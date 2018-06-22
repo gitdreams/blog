@@ -40,7 +40,7 @@ class EditProfileAdminForm(FlaskForm):
     name = StringField('角色名称', validators=[Length(0, 64)])
     location = StringField('位置', validators=[Length(0, 64)])
     about_me = TextAreaField('简介')
-    submit = StringField('提交')
+    submit = SubmitField('提交')
 
     def __init__(self, user, *args, **kwargs):
         super(EditProfileAdminForm, self).__init__(*args, **kwargs)
@@ -60,7 +60,7 @@ class EditProfileAdminForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    body = PageDownField('你的想法是什么？', validators=[DataRequired()])
+    body = PageDownField('在此编辑你的博客', validators=[DataRequired()])
     submit = SubmitField('提交')
 
 

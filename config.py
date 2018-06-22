@@ -10,15 +10,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    SECRET_KEY = 'hard to guess string'
     MAIL_SERVER = 'smtp.qq.com'
-    MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USE_TLS = False
+    MAIL_PORT = 465
+    MAIL_DEBUG = True
     MAIL_USERNAME = '120735429@qq.com'
-    MAIL_PASSWORD = 'L5845201314'
-    MAIL_PASSWORD = "cyhunwhlayeybhdd"
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
+    MAIL_PASSWORD = 'cmifzzyxnfmtbidd'
     FLASKY_MAIL_SENDER = '120735429@qq.com'
     FLASKY_ADMIN = '120735429@qq.com'
     SSL_REDIRECT = False
@@ -28,9 +27,7 @@ class Config:
     FLASKY_FOLLOWERS_PER_PAGE = 50
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
-
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \
-                              'postgresql://postgres:111111@localhost/maildb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:111111@localhost/maildb'
 
     @staticmethod
     def init_app(app):
@@ -39,24 +36,22 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \
-                              'postgresql://postgres:111111@localhost/maildb'
+    # MAIL_SERVER = 'smtp.qq.com'
+    # MAIL_PORT = 465
+    # MAIL_USE_SSL = True
+    # MAIL_USE_TLS = False
+    # MAIL_USERNAME = '120735429@qq.com'
+    # MAIL_PASSWORD = 'cmifzzyxnfmtbidd'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:111111@localhost/maildb'
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URI') or \
-                              'postgresql://postgres:111111@localhost/maildb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:111111@localhost/maildb'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or \
-                              'postgresql://postgres:111111@localhost/maildb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:111111@localhost/maildb'
 
 
 config = {

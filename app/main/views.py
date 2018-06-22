@@ -40,7 +40,7 @@ def server_shutdown():
 def index():
     form = PostForm()
     if current_user.can(Permission.WRITE) and form.validate_on_submit():
-        post = Post(body=form.body.date,
+        post = Post(body=form.body.data,
                     author=current_user._get_current_object())
         db.session.add(post)
         db.session.commit()
@@ -206,7 +206,7 @@ def followers(username):
         return redirect(url_for('.index'))
     page = request.args.get('page', 1, type=int)
     pagination = user.followers.paginate(
-        page, per_page=current_app.config['FLASK_FOLLOWERS_PER_PAGE'],
+        page, per_page=current_app.config['FLASKY_FOLLOWERS_PER_PAGE'],
         error_out=False
     )
     follows = [
@@ -217,7 +217,7 @@ def followers(username):
         for item in pagination.items
     ]
     return render_template('followers.html', user=user,
-                           title='Followers of',
+                           title='关注的用户',
                            endpoint='.followers',
                            pagination=pagination,
                            follows=follows)
@@ -243,7 +243,7 @@ def followed_by(username):
         for item in pagination.items
     ]
     return render_template('followers.html', user=user,
-                           title='Followed by',
+                           title='的关注者',
                            endpoint='.followed_by',
                            pagination=pagination,
                            follows=follows)

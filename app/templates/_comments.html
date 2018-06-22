@@ -32,6 +32,7 @@
                 {% else %}
                     <a class="btn btn-danger btn-xs" href="{{ url_for('.moderate_disable', id=comment.id, page=page) }}">关闭</a>
             {% endif %}
+            {% endif %}
         </div>
     </li>
     {% endfor %}

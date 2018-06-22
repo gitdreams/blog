@@ -65,6 +65,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         token = user.generate_confirmation_token()
+        print(user.email)
         send_email(user.email, '账户确认',
                    'auth/email/confirm', user=user, token=token)
         flash('请通过电子邮件确认你的账户')
@@ -89,10 +90,11 @@ def confirm(token):
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
+    print(current_user.email)
     send_email(current_user.email, '确认你的账户',
                'auth/email/confirm', user=current_user, token=token)
     flash('已发送邮件到您的邮箱')
-    return redirect(url_for('mail.index'))
+    return redirect(url_for('main.index'))
 
 
 @auth.route('/change-password', methods=['GET', 'POST'])
