@@ -10,24 +10,27 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    SECRET_KEY = 'hard to guess string'
+    # mail config
+    MAIL_DEBUG = True
+    MAIL_SUPPRESS_SEND = False
     MAIL_SERVER = 'smtp.qq.com'
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USE_TLS = False
     MAIL_USERNAME = '120735429@qq.com'
-    MAIL_PASSWORD = 'L5845201314'
-    MAIL_PASSWORD = "cyhunwhlayeybhdd"
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = '120735429@qq.com'
-    FLASKY_ADMIN = '120735429@qq.com'
+    MAIL_PASSWORD = 'tyyrlkkeeamsbggg'
+    MAIL_SENDER = '120735429@qq.com'
+
+    # MAIL_SUBJECT_PREFIX = '[Flasky]'
+    FLASK_ADMIN = '120735429@qq.com'
     SSL_REDIRECT = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_RECORD_QUERIES = True
-    FLASKY_POSTS_PER_PAGE = 20
-    FLASKY_FOLLOWERS_PER_PAGE = 50
-    FLASKY_COMMENTS_PER_PAGE = 30
-    FLASKY_SLOW_DB_QUERY_TIME = 0.5
+    RECORD_QUERIES = True
+    POSTS_PER_PAGE = 20
+    FOLLOWERS_PER_PAGE = 50
+    COMMENTS_PER_PAGE = 30
+    SLOW_DB_QUERY_TIME = 0.5
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \
                               'postgresql://postgres:111111@localhost/maildb'
