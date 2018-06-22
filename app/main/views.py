@@ -217,7 +217,7 @@ def followers(username):
         for item in pagination.items
     ]
     return render_template('followers.html', user=user,
-                           title='关注的用户',
+                           title='关注',
                            endpoint='.followers',
                            pagination=pagination,
                            follows=follows)
@@ -243,7 +243,7 @@ def followed_by(username):
         for item in pagination.items
     ]
     return render_template('followers.html', user=user,
-                           title='的关注者',
+                           title='关注的人',
                            endpoint='.followed_by',
                            pagination=pagination,
                            follows=follows)
