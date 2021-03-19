@@ -35,7 +35,7 @@ hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
 itsdangerous==0.24
-Jinja2==2.9.6
+Jinja2==2.11.3
 kombu==4.2.0
 Mako==1.0.7
 Markdown==2.6.8
