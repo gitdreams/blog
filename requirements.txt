@@ -14,7 +14,7 @@ click==6.7
 constantly==15.1.0
 dominate==2.3.1
 enum34==1.1.6
-eventlet==0.23.0
+eventlet==0.31.0
 Flask==0.12.2
 Flask-Bootstrap==3.3.7.1
 Flask-HTTPAuth==3.2.3
